@@ -756,6 +756,9 @@ export default class Dropdown extends PureComponent {
                 keyExtractor={this.keyExtractor}
                 scrollEnabled={visibleItemCount < itemCount}
                 contentContainerStyle={styles.scrollContainer}
+                extraData={{
+                  selected,
+                }}
               />
             </View>
           </Animated.View>

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Button } from 'react-native-material-buttons';
 
 import styles from './styles';
 
-export default class DropdownItem extends PureComponent {
+export default class DropdownItem extends Component {
   static defaultProps = {
     color: 'transparent',
     disabledColor: 'transparent',
