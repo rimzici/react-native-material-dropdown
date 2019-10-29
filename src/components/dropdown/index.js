@@ -175,8 +175,6 @@ export default class Dropdown extends PureComponent {
     this.blur = () => this.onClose();
     this.focus = this.onPress;
 
-    let { value } = this.props;
-
     this.mounted = false;
     this.focused = false;
 
@@ -184,14 +182,7 @@ export default class Dropdown extends PureComponent {
       opacity: new Animated.Value(0),
       selected: -1,
       modal: false,
-      value,
     };
-  }
-
-  componentWillReceiveProps({ value }) {
-    if (value !== this.props.value) {
-      this.setState({ value });
-    }
   }
 
   componentDidMount() {
@@ -315,7 +306,7 @@ export default class Dropdown extends PureComponent {
     });
   }
 
-  onClose(value = this.state.value) {
+  onClose() {
     let { onBlur, animationDuration, useNativeDriver } = this.props;
     let { opacity } = this.state;
 
@@ -333,7 +324,7 @@ export default class Dropdown extends PureComponent {
         }
 
         if (this.mounted) {
-          this.setState({ value, modal: false });
+          this.setState({ modal: false });
         }
       });
   }
@@ -354,7 +345,7 @@ export default class Dropdown extends PureComponent {
       onChangeText(value, index, data);
     }
 
-    setTimeout(() => this.onClose(value), delay);
+    setTimeout(() => this.onClose(), delay);
   }
 
   onLayout(event) {
@@ -366,15 +357,14 @@ export default class Dropdown extends PureComponent {
   }
 
   value() {
-    let { value } = this.state;
+    let { value } = this.props;
 
     return value;
   }
 
   selectedIndex() {
-    let { value } = this.state;
+    let { value } = this.props;
     let { data, valueExtractor } = this.props;
-
     return data
       .findIndex((item, index) => null != item && value === valueExtractor(item, index));
   }
@@ -475,7 +465,7 @@ export default class Dropdown extends PureComponent {
   }
 
   renderBase(props) {
-    let { value } = this.state;
+    let { value } = this.props;
     let {
       data,
       renderBase,
