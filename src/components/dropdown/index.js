@@ -153,6 +153,8 @@ export default class Dropdown extends PureComponent {
     supportedOrientations: PropTypes.arrayOf(PropTypes.string),
 
     useNativeDriver: PropTypes.bool,
+
+    renderItem: PropTypes.func,
   };
 
   constructor(props) {
@@ -573,6 +575,7 @@ export default class Dropdown extends PureComponent {
       rippleOpacity,
       rippleDuration,
       shadeOpacity,
+      renderItem,
     } = this.props;
 
     let props = propsExtractor(item, index);
@@ -618,6 +621,16 @@ export default class Dropdown extends PureComponent {
       },
     ];
 
+    if (renderItem) {
+      return renderItem({
+        ...props,
+        title,
+        textStyle,
+        item,
+        index,
+      });
+    }
+
     return (
       <DropdownItem index={index} {...props}>
         <Text style={[styles.item, itemTextStyle, textStyle]} numberOfLines={1}>
@@ -648,6 +661,8 @@ export default class Dropdown extends PureComponent {
       accessibilityLabel,
 
       supportedOrientations,
+
+      initialNumToRender,
 
       ...props
     } = this.props;
@@ -749,6 +764,7 @@ export default class Dropdown extends PureComponent {
                 extraData={{
                   selected,
                 }}
+                initialNumToRender={initialNumToRender}
               />
             </View>
           </Animated.View>
