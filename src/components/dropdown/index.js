@@ -200,13 +200,6 @@ export default class Dropdown extends PureComponent {
       data,
       disabled,
       onFocus,
-      itemPadding,
-      rippleDuration,
-      dropdownOffset,
-      dropdownMargins: { min: minMargin, max: maxMargin },
-      animationDuration,
-      absoluteRTLLayout,
-      useNativeDriver,
     } = this.props;
 
     if (disabled) {
@@ -239,6 +232,15 @@ export default class Dropdown extends PureComponent {
 
     this.container.measureInWindow((x, y, containerWidth, containerHeight) => {
       let { opacity } = this.state;
+      let {
+        itemPadding,
+        rippleDuration,
+        dropdownOffset,
+        dropdownMargins: { min: minMargin, max: maxMargin },
+        animationDuration,
+        absoluteRTLLayout,
+        useNativeDriver,
+      } = this.props;
 
       /* Adjust coordinates for relative layout in RTL locale */
       if (I18nManager.isRTL && !absoluteRTLLayout) {
