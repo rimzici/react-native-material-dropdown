@@ -488,7 +488,7 @@ export default class Dropdown extends PureComponent {
     }
 
     if ('function' === typeof renderBase) {
-      return renderBase({ ...props, title, value, renderAccessory, selectedItem: data[index] });
+      return renderBase({ ...props, title, value, renderAccessory });
     }
 
     title = null == title || 'string' === typeof title?
